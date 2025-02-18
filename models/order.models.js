@@ -31,6 +31,15 @@ const OrderSchema = new mongoose.Schema({
   totalPrice: {
     type: Number,
   },
+  // orderTime: {
+  //    type: String, 
+  //    required: true },
+  //    preferredSlot: { type: String,
+  //      required: true },
+  //      status: { type: String, enum: ['Pending', 'Allocated', 'Ready', 'Rejected'], default: 'Pending' },
+  //      priority: { type: Number, default: 0 }, // Priority score calculated by the algorithm
+  //      classType: { type: String, enum: ['high', 'low'], default: 'low' }, // Order classification (high/low priority)
+  //      assignedSlot: { type: String, default: null },
   message: {
     type: String,
   },
