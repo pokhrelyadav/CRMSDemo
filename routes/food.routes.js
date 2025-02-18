@@ -61,6 +61,13 @@ router.get("/food-item/:id", auth, async (req, res) => {
   }
 });
 
+// get products
+router.get("/product/list", async (req, res) => {
+  const products = await Food.find();
+
+  return res.status(200).send({ message: "success", productList: products });
+});
+
 // edit a food item : PUT(private)
 
 router.put("/edit/:id", auth, upload, async (req, res) => {
