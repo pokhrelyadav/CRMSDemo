@@ -25,7 +25,7 @@ const OrderCard = ({
           <img alt={ord?.name} src={ord?.image} />
           <p>{ord?.name}</p>
           <p>{ord?.quantity}</p>
-          <p>₹{ord?.price}</p>
+          <p>Rs. {ord?.price}</p>
         </div>
       ))}
 

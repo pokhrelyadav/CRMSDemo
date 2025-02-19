@@ -28,6 +28,7 @@ const Navbar = ({
       <Link to="/cart" className="link">
         Cart{" "}
         {cart?.length > 0 && <span className="cart-no">{cart?.length}</span>}
+        
       </Link>
 
       <Link to="/dashboard" className="link">
