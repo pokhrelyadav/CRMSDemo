@@ -20,9 +20,8 @@ const timeSlots = [
   { start: "12:00 PM", end: "12:30 PM", buffer: 10 },
 ];
 
-const costs = { rejection: 10, earlyService: 5, overtime: 15 };
 const maxCapacity= 2;
-const mdpSystem = new MDPSystem(timeSlots, costs, maxCapacity);
+const mdpSystem = new MDPSystem(timeSlots, maxCapacity);
 
 // get admin orders : GET (private)
 router.get("/orders", auth, async (req, res) => {
@@ -53,79 +52,7 @@ router.get("/myorders", auth, async (req, res) => {
   }
 });
 
-// post orders : POST (private)
-// router.post("/place/order", auth, async (req, res) => {
-//   try {
-//     const user = req.user.id;
 
-//     const order = new Order({
-//       user,
-//       orders: req.body.cart,
-//       totalPrice: req.body.totalPrice,
-//       roomNo: req.body.roomNo,
-//       message: req.body.message ? req.body.message : "",
-//       paymentType: "",
-//     });
-
-//     await order.save();
-
-//     res.json(order);
-//   } catch (error) {
-//     console.error(error.message);
-//     res.status(500).send("Server Error");
-//   }
-//   mdpSystem.allocateOrders([order]);
-// });
-
-// ? post 2
-// router.post("/place/order", auth, async (req, res) => {
-//   try {
-//     const user = req.user.id;
-
-//     // Extracting data from the request body
-//     const {
-//       cart, // Assuming cart is an array of order items
-//       totalPrice,
-//       roomNo,
-//       message,
-//       paymentType,
-//       orderTime,
-//       assignedSlot
-//     } = req.body;
-
-//     // Create a new order instance
-//     const order = new Order({
-//       user,
-//       orders: cart, // Assuming cart is structured correctly as per the schema
-//       totalPrice,
-//       roomNo,
-//       message: message ? message : "", // Added preferredSlot
-//       paymentType: paymentType || "", // Default to empty string if not provided
-//       orderTime: orderTime,
-//       assignedSlot: assignedSlot
-//     });
-
-//     await order.save();//? new try
-//      mdpSystem.reallocateOrders([order]);
-//     //   // After allocation, update the order with the assigned slot
-// if (order.timeSlot) {
-//   order.assignedSlot = order.timeSlot; // Update assignedSlot with the allocated time slot
-//  await order.save(); // Save the updated order
-//     }
-
-//     // Respond with the created order
-//     res.status(201).json({
-//       success: true,
-//       order
-//       });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({
-//       success: false,
-//       message: "Server error. Please try again later.",
-//     });
-//   }
-// });
 
 // ? try 3
 router.post("/place/order", auth, async (req, res) => {
