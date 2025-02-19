@@ -140,7 +140,8 @@ router.post("/place/order", auth, async (req, res) => {
       message,
       paymentType,
       orderTime,
-      assignedSlot
+      assignedSlot,
+      priority
     } = req.body;
 
     // Create a new order instance
@@ -152,12 +153,13 @@ router.post("/place/order", auth, async (req, res) => {
       message: message ? message : "", // Added preferredSlot
       paymentType: paymentType || "", // Default to empty string if not provided
       orderTime: orderTime,
-      assignedSlot: assignedSlot
+      assignedSlot: assignedSlot,
+      priority: priority
     });
       
       await order.save();
 
-      await mdpSystem.reallocateOrders(order); // Allocate order dynamically
+      await mdpSystem.allocateOrders(order); // Allocate order dynamically
 
       res.json(order);
   } catch (error) {
