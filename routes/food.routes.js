@@ -87,6 +87,28 @@ router.get("/product/list", async (req, res) => {
 });
 
 
+//get recommended products
+
+router.get("/recommend", async (req, res) => {
+  const { food } = req.query;
+
+  if (!food) {
+    return res.status(400).json({ error: "Food item not provided" });
+  }
+
+  try {
+    const result = await recommendCollection.findOne({ food });
+
+    if (result && result.recommended) {
+      return res.json({ food, recommended: result.recommended });
+    } else {
+      return res.json({ food, recommended: [] });
+    }
+  } catch (error) {
+    console.error("Error fetching recommendations:", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 // edit a food item : PUT(private)
 

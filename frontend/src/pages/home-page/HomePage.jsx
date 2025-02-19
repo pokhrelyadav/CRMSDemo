@@ -19,7 +19,7 @@ const Homepage = () => {
         <div className="menu-card-div">
           <div className="menu-card">
             <div className="red">
-              <h1>Breakfast</h1>
+              <h1>Store 1</h1>
             </div>
             <img src={cofee} className="image" alt="tea" />
             <div>
@@ -33,7 +33,7 @@ const Homepage = () => {
           </div>
           <div className="menu-card">
             <div className="red">
-              <h1>Indian</h1>
+              <h1>Store 2</h1>
             </div>
             <img src={dosa} className="dosa" alt="dosa" />
             <div>
@@ -44,7 +44,7 @@ const Homepage = () => {
           </div>
           <div className="menu-card">
             <div className="red">
-              <h1>Chinese</h1>
+              <h1>Store 3</h1>
             </div>
             <img src={noodles} className="chinese" alt="noodles" />
             <div>
@@ -58,7 +58,7 @@ const Homepage = () => {
           </div>
           <div className="menu-card breakfast">
             <div className="red">
-              <h1>Chat</h1>
+              <h1>Store 4</h1>
             </div>
             <img src={samosa} className="samosa" alt="samosa" />
             <div>
