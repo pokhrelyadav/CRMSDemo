@@ -17,7 +17,7 @@ const FoodCard = ({ food, AddToCart, user, deleteFoodItem }) => {
 
       <div className="food-headers">
         <p className="name">{food?.name}</p>
-        <p className="price"> ₹{food?.price}</p>
+        <p className="price"> Rs. {food?.price}</p>
       </div>
       <p className="quantity">Quantity: {food?.quantity}</p>
       {user?.isAdmin && (

@@ -5,36 +5,33 @@ const Footer = () => {
   return (
     <div className="footer">
       <div className="about">
-        <h2>About Policy</h2>
+        <h2>About</h2>
         <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled
+          Sahaj is a Customer Retailer Management Service with Dynamic
+          time allocation and recommendation system.
         </p>
       </div>
       <div className="header">
-        <h2>Header</h2>
-        <p>Link</p>
-        <p>Link</p>
-        <p>Link</p>
-        <p>Link</p>
+        <h2>CopyRight</h2>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
       </div>
       <div className="header">
-        <h2>Header</h2>
-        <p>Link</p>
-        <p>Link</p>
-        <p>Link</p>
-        <p>Link</p>
+        <h2>All Rights Reserved</h2>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
       </div>
       <div className="contact-us">
         <h2>Contact Us</h2>
         <p>
-          <b>Address:</b> Z-302, Some Random Street, Some Random City, Some
-          Random Country, 0000000{" "}
+          <b>Address:</b> Chyasal -09 , Lalitpur {" "}
         </p>
         <p>
-          <b>Phone No:</b> 101010101
+          <b>Phone No:</b> 97XXXXXXXX
         </p>
       </div>
     </div>
