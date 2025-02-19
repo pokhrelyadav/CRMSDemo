@@ -17,6 +17,7 @@ import PrivateRoute from "./components/private-component/PrivateComponent";
 import AdminRoute from "./components/admin-component/AdminComponent";
 import EditFoodPage from "./pages/edit-food-page/EditFoodPage";
 import Alert from "./components/alert/Alert";
+import Product from "./pages/product-page/Product";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -34,6 +35,7 @@ function App() {
           <PrivateRoute exact path="/" component={Homepage} />
           <Route exact path="/signin" component={SignInPage} />
           <Route exact path="/signup" component={SignUpPage} />
+          <PrivateRoute exact path="/product" component={Product} />
           <AdminRoute exact path="/add-food" component={AddFoodPage} />
           <PrivateRoute exact path="/food" component={FoodPage} />
           <PrivateRoute exact path="/cart" component={CartPage} />
