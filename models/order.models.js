@@ -30,6 +30,7 @@ const OrderSchema = new mongoose.Schema({
   ],
   totalPrice: {
     type: Number,
+    default: 0
   },
   orderTime: {
      type: String, 
@@ -64,19 +65,37 @@ const OrderSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
+// Function to calculate total price
+function calculateTotalPrice(orders) {
+  return orders.reduce((sum, order) => sum + order.price * order.quantity, 0);
+}
+
+// Pre-save hook for new or updated orders
 OrderSchema.pre("save", function (next) {
-  this.totalPrice = this.orders.reduce(
-    (sum, order) => sum + order.price * order.quantity,
-    0
-  );
-  next();
-});
-OrderSchema.pre("save", function (next) {
-  this.totalPrice = this.orders.reduce(
-    (sum, order) => sum + order.price * order.quantity,
-    0
-  );
+  this.totalPrice = calculateTotalPrice(this.orders);
   next();
 });
 
+// Pre-update hook to recalculate totalPrice on updates
+OrderSchema.pre("findOneAndUpdate", async function (next) {
+  const update = this.getUpdate();
+  if (update.orders) {
+    const newTotalPrice = calculateTotalPrice(update.orders);
+    this.set({ totalPrice: newTotalPrice });
+  }
+  next();
+});
+// Add calculateFrequency as a static method
+OrderSchema.statics.calculateFrequency = async function (userId) {
+  const now = new Date();
+  const oneMonthAgo = new Date(now.setMonth(now.getMonth() - 1)); // Last 30 days
+
+  const orderCount = await this.countDocuments({
+      user: userId,
+      date: { $gte: oneMonthAgo },
+  });
+
+  // Return 1 for new users (no orders)
+  return orderCount === 0 ? 1 : orderCount;
+};
 module.exports = mongoose.model("order", OrderSchema);

@@ -62,8 +62,8 @@ router.post("/place/order", auth, async (req, res) => {
     // Extracting data from the request body
     const {
       cart, // Assuming cart is an array of order items
-      totalPrice,
       roomNo,
+      totalPrice,
       message,
       paymentType,
       orderTime,

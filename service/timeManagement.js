@@ -1,6 +1,7 @@
 //  const TimeSlot = require('../models/timeSlot.model');
 const prompt = require("prompt-sync") ({sigint: true});
 const MAX_ORDERS_PER_SLOT = 2; // Adjust as needed
+const Ord = require('../models/order.models');
 
 
 
@@ -118,14 +119,16 @@ class MDPSystem {
     }
     
     // Calculate priority score for an order
-    calculatePriority(order) {
+     async calculatePriority(order) {
         const weights = { w1: 3, w2: 5, w3: 2, w4: 0.01 };
-        const frequency = 1;
+        const frequency = await Ord.calculateFrequency(order.userId);
+        console.log(frequency);
         const value = order.totalPrice; // Logarithmic scaling
         const urgency = order.urgency === "high" ? 1 : 10;
 
        const ps =frequency * weights.w1 + value * weights.w2 - urgency * weights.w3 - this.convertToMinutes(order.orderTime) * weights.w4;
        console.log(ps);
+       console.log(order.totalPrice);
        return ps;
     }
 
@@ -242,7 +245,7 @@ console.log(validSlots[0]);
             if (optimalSlot) {
                 const slotKey = `${optimalSlot.start} - ${optimalSlot.end}`;
                 newOrder.assignedSlot = slotKey;
-                await Order.updateOne({ _id: newOrder._id }, { assignedSlot: slotKey });
+                await Order.updateOne({ _id: newOrder._id }, { assignedSlot: slotKey , priority : newOrder.priority});
     
                 // Update slot capacity
                 slotCapacity.set(slotKey, (slotCapacity.get(slotKey) || 0) + 1);
