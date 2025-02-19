@@ -25,10 +25,12 @@ const Navbar = ({
       <Link to="/signin" className="link">
         Home
       </Link>
+      <Link to="/product" className="product">
+        Product
+      </Link>
       <Link to="/cart" className="link">
         Cart{" "}
         {cart?.length > 0 && <span className="cart-no">{cart?.length}</span>}
-        
       </Link>
 
       <Link to="/dashboard" className="link">
