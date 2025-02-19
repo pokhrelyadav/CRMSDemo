@@ -121,8 +121,9 @@ class MDPSystem {
     calculatePriority(order) {
         const weights = { w1: 3, w2: 5, w3: 2, w4: 0.01 };
         const frequency = 1;
-        const value = 100;
-        let urgency = prompt();
+        const value = order.totalPrice; // Logarithmic scaling
+        const urgency = order.urgency === "high" ? 1 : 10;
+
        const ps =frequency * weights.w1 + value * weights.w2 - urgency * weights.w3 - this.convertToMinutes(order.orderTime) * weights.w4;
        console.log(ps);
        return ps;

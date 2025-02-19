@@ -22,7 +22,7 @@ const timeSlots = [
 
 const maxCapacity= 2;
 const mdpSystem = new MDPSystem(timeSlots, maxCapacity);
-
+//! Dhekauxa
 // get admin orders : GET (private)
 router.get("/orders", auth, async (req, res) => {
   try {
@@ -40,7 +40,7 @@ router.get("/orders", auth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-
+// ! yo dekhayena
 // get user(my) orders : GET (private)
 router.get("/myorders", auth, async (req, res) => {
   try {
@@ -54,7 +54,7 @@ router.get("/myorders", auth, async (req, res) => {
 
 
 
-// ? try 3
+
 router.post("/place/order", auth, async (req, res) => {
   try {
     const user = req.user.id;
@@ -68,7 +68,8 @@ router.post("/place/order", auth, async (req, res) => {
       paymentType,
       orderTime,
       assignedSlot,
-      priority
+      priority,
+      urgency
     } = req.body;
 
     // Create a new order instance
@@ -81,7 +82,8 @@ router.post("/place/order", auth, async (req, res) => {
       paymentType: paymentType || "", // Default to empty string if not provided
       orderTime: orderTime,
       assignedSlot: assignedSlot,
-      priority: priority
+      priority: priority,
+      urgency: urgency
     });
       
       await order.save();
@@ -105,8 +107,13 @@ router.put("/orders/:id", auth, async (req, res) => {
         { _id: req.params.id },
         { isConfirmed: req.body.isConfirmed },
         { new: true }
+
       );
-      res.json({ data: order });
+      if (!updatedOrder) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+  
+      res.json({ message: "Order confirmed", order: updatedOrder });
     } else {
       return res.status(401).json({ msg: "You can't access this route" });
     }

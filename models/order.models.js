@@ -37,7 +37,7 @@ const OrderSchema = new mongoose.Schema({
  
   status: { type: String, enum: ['Pending', 'Allocated', 'Ready', 'Rejected'], default: 'Pending' },
   priority: { type: Number, default: 0 }, // Priority score calculated by the algorithm
-  classType: { type: String, enum: ['high', 'low'], default: 'low' }, // Order classification (high/low priority)
+  urgency: { type: Number, default: 10 }, // Order classification (high/low priority)
   assignedSlot: { type: String, default: null },
   message: {
     type: String,
@@ -47,7 +47,7 @@ const OrderSchema = new mongoose.Schema({
   },
   isConfirmed: {
     type: Boolean,
-    default: null,
+    default: false, //! untill the admin corrects it.
   },
   paymentType: {
     type: String,
@@ -63,6 +63,20 @@ const OrderSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+});
+OrderSchema.pre("save", function (next) {
+  this.totalPrice = this.orders.reduce(
+    (sum, order) => sum + order.price * order.quantity,
+    0
+  );
+  next();
+});
+OrderSchema.pre("save", function (next) {
+  this.totalPrice = this.orders.reduce(
+    (sum, order) => sum + order.price * order.quantity,
+    0
+  );
+  next();
 });
 
 module.exports = mongoose.model("order", OrderSchema);
