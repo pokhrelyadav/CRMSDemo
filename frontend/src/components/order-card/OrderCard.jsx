@@ -25,12 +25,12 @@ const OrderCard = ({
           <img alt={ord?.name} src={ord?.image} />
           <p>{ord?.name}</p>
           <p>{ord?.quantity}</p>
-          <p>Rs. {ord?.price}</p>
+          <p>Rs {ord?.price}</p>
         </div>
       ))}
 
       <p>
-        <b>Total Price: </b>₹{order?.totalPrice}
+        <b>Total Price: </b>Rs {order?.totalPrice}
       </p>
       <p>
         <b>Status: </b>

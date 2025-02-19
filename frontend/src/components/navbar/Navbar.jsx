@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutUser } from "../../redux/auth/auth.actions";
 import "./Navbar.css";
+import { getAllFoodsList } from "../../redux/food/food.actions";
 
 const Navbar = ({
   auth: { isAuthenticated, loading, user },
@@ -25,9 +26,10 @@ const Navbar = ({
       <Link to="/signin" className="link">
         Home
       </Link>
-      <Link to="/product" className="product">
+      <Link to="/product" className="link" onClick={() => getAllFoodsList()}>
         Product
       </Link>
+
       <Link to="/cart" className="link">
         Cart{" "}
         {cart?.length > 0 && <span className="cart-no">{cart?.length}</span>}

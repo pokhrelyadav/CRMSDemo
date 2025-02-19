@@ -8,6 +8,7 @@ const AddFoodPage = ({ isAuthenticated, loading, addFoodItem, history }) => {
     foodType: "",
     name: "",
     price: "",
+    description: "",
     quantity: "",
   });
 
@@ -17,7 +18,7 @@ const AddFoodPage = ({ isAuthenticated, loading, addFoodItem, history }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const { name, price, foodType, quantity } = formData;
+  const { name, price, description , foodType, quantity } = formData;
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -26,6 +27,7 @@ const AddFoodPage = ({ isAuthenticated, loading, addFoodItem, history }) => {
     formdata.append("foodType", foodType);
     formdata.append("name", name);
     formdata.append("price", price);
+    formdata.append("description", description)
     formdata.append("quantity", quantity);
     formdata.append("image", image);
 
@@ -58,6 +60,15 @@ const AddFoodPage = ({ isAuthenticated, loading, addFoodItem, history }) => {
             <br />
             <input
               type="text"
+              name="description"
+              className="input"
+              placeholder="Description"
+              value={description}
+              onChange={onChange}
+            />
+            <br/>
+            <input
+              type="text"
               name="quantity"
               className="input"
               placeholder="Quantity"
@@ -66,11 +77,11 @@ const AddFoodPage = ({ isAuthenticated, loading, addFoodItem, history }) => {
             />
             <br />
             <select name="foodType" value={foodType} onChange={onChange}>
-              <option value="null">Cateogry </option>
-              <option value="breakfast">Breakfast</option>
-              <option value="indian">Indian</option>
-              <option value="chinese">Chinese</option>
-              <option value="chat">Chat</option>
+              <option value="null">Stores List</option>
+              <option value="breakfast">Store 1</option>
+              <option value="indian">Store 2</option>
+              <option value="chinese">Store 3</option>
+              <option value="chat">Store 4</option>
             </select>
             <br />
             <input

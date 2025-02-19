@@ -29,12 +29,13 @@ router.post(
     try {
       const user = await User.findById(req.user.id);
       if (user.isAdmin) {
-        const { foodType, name, price, quantity } = req.body;
+        const { foodType, name, price, description, quantity } = req.body;
 
         const food = new Food({
           foodType,
           name,
           price,
+          description,
           quantity,
           image: req.file.path,
         });
@@ -62,11 +63,30 @@ router.get("/food-item/:id", auth, async (req, res) => {
 });
 
 // get products
-router.get("/product/list", async (req, res) => {
-  const products = await Food.find();
+// router.get("/product/list", async (req, res) => {
+//   const products = await Food.find();
 
-  return res.status(200).send({ message: "success", productList: products });
+//   return res.status(200).send({ message: "success", productList: products });
+// });
+
+router.get("/product/list", async (req, res) => {
+  try {
+    // Get the limit from query parameters, or default to 10
+    const limit = parseInt(req.query.limit) || 10; // Default limit = 10
+
+    // Fetch products with the applied limit
+    const products = await Food.find().limit(limit);
+
+    console.log("Products Fetched from DB ydv:", products);
+
+    return res.status(200).send({ message: "success", productList: products });
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    res.status(500).json({ message: "Server Error" });
+  }
 });
+
+
 
 // edit a food item : PUT(private)
 
