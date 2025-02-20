@@ -1,84 +1,134 @@
+/* General Styles */
 .table-div {
-  display: flex;
-  justify-content: center;
+  width: 90%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .table {
-  margin-top: 40px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
 .table th {
-  font-size: 25px;
-  padding: 0 20px;
-}
-
-.table td {
-  text-align: center;
-  padding: 15px 0;
-}
-
-.table img {
-  height: 80px;
-  width: 80px;
-  border-radius: 10px;
-}
-
-.cart-total {
-  display: flex;
-  justify-content: flex-end;
-  flex-direction: column;
-  margin: 10px 40px;
-}
-.cart-total button {
-  background: #ff2a2a;
-  padding: 10px 0;
-  font-size: 15px;
-  border: none;
-  border-radius: 5px;
+  background-color: #4CAF50;
   color: white;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Image Styles */
+.table img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+/* Button Styles */
 .add,
 .minus,
 .remove {
-  margin: 0 7px;
-  padding: 3px 7px;
-  text-align: center;
-}
-.add,
-.minus {
-  background: rgb(1, 207, 104);
+  background-color: #4CAF50;
+  color: white;
   border: none;
+  padding: 8px 12px;
+  margin: 2px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add:hover,
+.minus:hover {
+  background-color: #45a049;
 }
 
 .remove {
-  background: red;
-  border: none;
-  color: white;
+  background-color: #f44336;
 }
 
-.icon {
-  fill: white;
+.remove:hover {
+  background-color: #e53935;
 }
 
-.table input {
-  margin: 20px 0;
-  padding: 10px 30px;
-  width: 100%;
-  border-radius: 20px;
-  border: solid 2px #ff2a2a;
-}
-
-.table textarea {
-  padding: 10px 30px;
-  width: 100%;
-  border-radius: 20px;
-  border: solid 2px #ff2a2a;
-}
-
+/* Teacher Section Styles */
+/* Teacher Section Styles */
 .teacher {
-  display: flex;
-  justify-content: flex-end;
-  flex-direction: column;
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #e8f5e9;
+  border-radius: 5px;
+}
+
+.teacher h2 {
+  margin-bottom: 10px;
+  color: #2e7d32;
+}
+
+.teacher input[type="text"],
+.teacher textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.teacher textarea {
+  resize: vertical;
+  height: 80px;
+}
+
+/* Order Time Input */
+.teacher input[type="text"][name="orderTime"] {
+  width: 200px;
+  margin-right: 10px;
+}
+
+/* Cart Total Styles */
+.cart-total {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.cart-total h3 {
+  font-size: 24px;
+  color: #2e7d32;
+}
+
+.cart-total button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.cart-total button:hover {
+  background-color: #45a049;
+}
+
+/* Empty Cart Message */
+h1 {
+  text-align: center;
+  color: #555;
+  margin-top: 50px;
 }

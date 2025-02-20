@@ -31,9 +31,15 @@ const OrderCard = ({
 
       <p>
         <b>Total Price: </b>Rs {order?.totalPrice}
+
       </p>
       <p>
-        <b>Status: </b>
+        <b>AssignedSlot: </b>Rs {order?.assignedSlot}
+        
+      </p>
+     
+      <p>
+        {/* <b>Status: </b>
         {order?.isConfirmed !== null ? (
           order?.isConfirmed === true ? (
             <span className="accepted-span">Accepted</span>
@@ -42,7 +48,7 @@ const OrderCard = ({
           )
         ) : (
           <span className="notConfirm-span">Not confirmed yet</span>
-        )}
+        )} */}
       </p>
 
       {order?.paymentStatus === true ? (

@@ -22,7 +22,8 @@ const CartPage = ({
 }) => {
   const [roomNo, setRoomNo] = useState("");
   const [message, setMessage] = useState("");
-
+  const [orderTime, setOrderTime] = useState("");
+  const [urgency, setUrgency] = useState(10); 
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -37,9 +38,17 @@ const CartPage = ({
       roomNo: roomNo,
       message: message,
       totalPrice: getCartTotal(cartItems),
+      orderTime: orderTime,
     };
 
     placeOrder(orderDetails, history);
+  };
+  const handleUrgencyClick = (level) => {
+    setUrgency(level === "high" ? 1 : 10);
+  };
+
+  const handleInputChange = (event) => {
+    setOrderTime(event.target.value); // Updating state with the input value
   };
 
   return (
@@ -108,6 +117,25 @@ const CartPage = ({
               <h3>Total price: ₹{getCartTotal(cartItems)}</h3>
               <button onClick={onSubmit}>Place Order</button>
             </div>
+            <div>
+              <label>
+                <input
+                  type="text"
+                  placeholder="Enter order time"
+                  value={orderTime}
+                  onChange={handleInputChange}
+                />
+            
+                enter order time:
+              </label>
+            </div>
+
+  <div>
+    <button onClick={() => handleUrgencyClick("high")}>High Urgency</button>
+    <button onClick={() => handleUrgencyClick("low")}>Low Urgency</button>
+    <p>Selected Urgency: {urgency}</p>
+  </div>
+
           </table>
         ) : (
           <h1>Cart is empty</h1>
