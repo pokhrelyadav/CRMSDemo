@@ -132,72 +132,8 @@ class MDPSystem {
        return ps;
     }
 
-    // Find the best available slot for an order
-    // findOptimalSlot(order) {
-    //     let optimalSlot = null;
-    //     let minCost = Infinity;
-    //     for (const slot of this.timeSlots) {
-    //         if (this.isSlotValidForOrder(order, slot) && this.canAllocate(slot)) {
-    //             const cost = this.dynamicCost(order, slot);
-    //             if (cost < minCost) {
-    //                 minCost = cost;
-    //                 optimalSlot = slot;
-    //             }
-    //         }
-    //     }
-        
-    //     if (optimalSlot) {
-    //                   const slotKey = `${optimalSlot.start} - ${optimalSlot.end}`;
-    //                   try {
-    //                       // If the order is high urgency, check for existing orders in the slot
-    //                       if (order.urgency<3) {
-    //                         console.log("entered");
-    //                           const existingOrders = this.orders.filter(o => o.assignedSlot === slotKey);
-    //                           if (existingOrders.length > 0) {
-    //                               // Reallocate existing orders based on their priority
-    //                               for (const existingOrder of existingOrders) {
-    //                                   // Find a new slot for the existing order
-    //                                   let newSlot = null;
-    //                                   let newMinCost = Infinity;
-            
-    //                                   for (const potentialSlot of this.timeSlots) {
-    //                                       if (this.isSlotValidForOrder(existingOrder, potentialSlot)) {
-    //                                           const newCost = this.dynamicCost(existingOrder, potentialSlot);
-    //                                           if (newCost < newMinCost && this.canAllocate(potentialSlot)) {
-    //                                               newMinCost = newCost;
-    //                                               newSlot = potentialSlot;
-    //                                           }
-    //                                       }
-    //                                   }
-            
-    //                                   //? If a new slot is found, reallocate the existing order
-    //                                 //   if (newSlot) {
-    //                                 //       const newSlotKey = `${newSlot.start} - ${newSlot.end}`;
-    //                                 //       this.updateSlotCapacity(newSlotKey, 1); // Increment capacity for the new slot
-    //                                 //       existingOrder.assignedSlot = newSlotKey; // Update assigned slot
-    //                                 //       console.log(`Order ${existingOrder.id} reallocated to ${newSlotKey}`);
-    //                                 //   } else {
-    //                                 //       existingOrder.assignedSlot = "Rejected"; // No slot available
-    //                                 //   }
-    //                               }
-    //                           }
-    //                       }
-            
-    //                       // Allocate the new order to the optimal slot
-    //                       this.updateSlotCapacity(slotKey, 1); // Increment capacity for allocated order
-    //                       order.assignedSlot = slotKey; // Assign the slot to the order
-    //                       console.log(`Order ${order.id} allocated to ${slotKey}`);
-    //                   } catch (error) {
-    //                       console.error(error.message);
-    //                       order.assignedSlot = "Pending"; // Mark as pending for reallocation
-    //                   }
-    //               } else {
-    //                   order.assignedSlot = "Rejected"; // No slot available
-    //               }
-    //               return optimalSlot;
-    //           }
-            
-    
+   
+    // REmove the unneccessary code
 
     // Check if a slot can accommodate an order
     canAllocate(slot) {
