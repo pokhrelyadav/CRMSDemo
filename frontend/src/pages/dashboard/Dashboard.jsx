@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import Loader from "../../components/loader/Loader";
-import { connect } from "react-redux";
-import { getAdminORders } from "../../redux/order/order.actions";
-import AdminDashboard from "../../components/admin-dashboard/AdminDashboard";
-import UserDashboard from "../../components/user-dashboard/UserDashboard";
-import "./Dashboard.css";
+import React, { useEffect } from 'react';
+import Loader from '../../components/loader/Loader';
+import { connect } from 'react-redux';
+import { getAdminORders } from '../../redux/order/order.actions';
+import AdminDashboard from '../../components/admin-dashboard/AdminDashboard';
+import UserDashboard from '../../components/user-dashboard/UserDashboard';
+import './Dashboard.css';
 
 const Dashboard = ({ getAdminORders, user, loading }) => {
   useEffect(() => {
@@ -19,7 +19,7 @@ const Dashboard = ({ getAdminORders, user, loading }) => {
           <div className="profile">
             <img
               alt="food_img"
-              src="https://jrlifesciences.com/wp-content/uploads/2018/09/gravatar.jpg"
+              src="https://www.pngall.com/wp-content/uploads/5/Profile-Male-Transparent.png"
             />
             <h1>{user?.name}</h1>
 

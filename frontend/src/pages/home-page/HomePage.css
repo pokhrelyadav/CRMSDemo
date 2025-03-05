@@ -1,5 +1,5 @@
 .landing-page-div {
-  background: url("../../assets/canteenhome.png");
+  background: url('../../assets/canteenhome.png');
   background-size: cover;
   background-repeat: no-repeat;
   height: 120vh;
@@ -59,54 +59,41 @@
 }
 
 .menu-card {
-  height: 300px;
-  width: 100%;
+  width: 250px;
   margin: 0 20px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  background: white;
+  padding-bottom: 20px; /* Add padding so button is not stuck at the bottom */
 }
+
 .menu-card h1 {
   color: white;
 }
+
 .red {
   background: #ff2a2a;
   width: 100%;
-  margin: 0;
-  padding-top: 20px;
+  padding: 20px 0;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
-  height: 120px;
-  border-bottom-left-radius: 80px;
-  border-bottom-right-radius: 80px;
-  position: relative;
+  text-align: center;
 }
 
-.image {
-  position: absolute;
-  height: 150px;
-  width: 150px;
-  transform: translateY(-50%) translateX(-60%);
-}
-
-.dosa {
-  position: absolute;
-  height: 130px;
-  width: 130px;
-  transform: translateY(-40%) translateX(-50%);
-}
-.samosa {
-  position: absolute;
-  height: 100px;
-  width: 100px;
-  transform: translateY(-60%) translateX(-50%);
-}
-
+.image,
+.dosa,
+.samosa,
 .chinese {
-  position: absolute;
-  height: 130px;
-  width: 130px;
-  transform: translateY(-60%) translateX(-50%);
+  height: 120px;
+  width: 120px;
+  object-fit: contain;
+  margin-top: 10px;
 }
 
 .button {
@@ -117,14 +104,12 @@
   background: transparent;
   color: #ff2a2a;
   border: solid 1px #ff2a2a;
-  margin-top: 100px;
+  margin-top: 15px; /* Reduced margin so it doesn't get pushed too far */
 }
 
 .button:hover {
   background: #ff2a2a;
   color: white;
-  -webkit-transition: ease-out 0.4s;
-  -moz-transition: ease-out 0.4s;
   transition: ease-out 0.4s;
   box-shadow: inset 400px 0 0 0 #ff2a2a;
 }
