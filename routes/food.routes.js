@@ -1,6 +1,7 @@
 const express = require("express");
 const Food = require("../models/food.models");
 const User = require("../models/auth.models");
+const Recommend=require("../models/recommend.model")
 const router = express.Router();
 const auth = require("../middleware/auth");
 const upload = require("../middleware/cloudinary");
@@ -77,7 +78,25 @@ router.get("/product/list", async (req, res) => {
     // Fetch products with the applied limit
     const products = await Food.find().limit(limit);
 
-    console.log("Products Fetched from DB ydv:", products);
+    // console.log("Products Fetched from DB ydv:", products);
+
+    return res.status(200).send({ message: "success", productList: products });
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
+//get recommendation food
+
+router.get("/recommend", async (req, res) => {
+  try {
+    // Get the limit from query parameters, or default to 10
+    const limit = parseInt(req.query.limit) || 10; // Default limit = 10
+
+    // Fetch products with the applied limit
+    const products = await Recommend.find().limit(limit);
+
 
     return res.status(200).send({ message: "success", productList: products });
   } catch (error) {

@@ -72,7 +72,7 @@ const CartPage = ({
                 </td>
                 <td>{cartItem?.name}</td>
                 {console.log(typeof cartItem.price)}
-                <td>₹{cartItem?.price * cartItem?.quantity}</td>
+                <td>Rs {cartItem?.price * cartItem?.quantity}</td>
                 <td>{cartItem?.quantity}</td>
                 <td>
                   <button className="add" onClick={() => AddToCart(cartItem)}>
@@ -114,7 +114,7 @@ const CartPage = ({
               </div>
             )}
             <div className="cart-total">
-              <h3>Total price: ₹{getCartTotal(cartItems)}</h3>
+              <h3>Total price: Rs {getCartTotal(cartItems)}</h3>
               <button onClick={onSubmit}>Place Order</button>
             </div>
             <div>

@@ -38,7 +38,7 @@ const AddFoodPage = ({ isAuthenticated, loading, addFoodItem, history }) => {
     <div className="root">
       <div className="add-food-div">
         <div>
-          <h1>Add food item</h1>
+          <h1>Add Product</h1>
           <form onSubmit={onSubmit}>
             <input
               type="text"

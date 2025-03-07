@@ -3,6 +3,7 @@ const cors = require("cors");
 const app = express();
 const connectDB = require("./config/db");
 const path = require("path");
+const Recommend = require("./models/recommend.model");
 
 require("dotenv").config();
 
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(require("./routes/auth.routes"));
 app.use(require("./routes/food.routes"));
 app.use(require("./routes/order.routes"));
+
 
 const PORT = process.env.PORT || 8000;
 

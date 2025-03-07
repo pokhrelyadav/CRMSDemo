@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import "./FoodCard.css";
 
 const FoodCard = ({ food, AddToCart, user, deleteFoodItem }) => {
+
   return (
     <div className="food-card" key={food?._id}>
       <img alt={food?.name} src={food?.image} />

@@ -17,12 +17,12 @@ const Homepage = () => {
       </div> */}
       <div className="menu">
         <div className="menu-header">
-          <h3>What we're offering</h3>
+          <h3>Our Retailers...</h3>
         </div>
         <div className="menu-card-div">
           <div className="menu-card">
             <div className="red">
-              <h1>AR Mart</h1>
+              <h1>Stationary</h1>
             </div>
             <img src={mart} className="image" alt="tea" />
             <div>
@@ -47,7 +47,7 @@ const Homepage = () => {
           </div>
           <div className="menu-card">
             <div className="red">
-              <h1>Stationary</h1>
+              <h1>AR Mart</h1>
             </div>
             <img src={stationary} className="chinese" alt="noodles" />
             <div>

@@ -9,6 +9,9 @@ import {
   GET_SINGLE_FOOD_ITEM_REQUEST,
   GET_SINGLE_FOOD_ITEM_SUCCESS,
   GET_SINGLE_FOOD_ITEM_FAIL,
+  GET_ALL_RECOMMEND_FOOD_ITEMS_REQUEST,
+  GET_ALL_RECOMMEND_FOOD_ITEMS_SUCCESS,
+  GET_ALL_RECOMMEND_FOOD_ITEMS_FAIL,
   EDIT_FOOD_ITEM_REQUEST,
   EDIT_FOOD_ITEM_SUCCESS,
   EDIT_FOOD_ITEM_FAIL,
@@ -61,11 +64,28 @@ export const getAllFoodItems = (category) => async (dispatch) => {
 };
 
 
+
+
 export const getAllFoodsList = (limit) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_ALL_RECOMMEND_FOOD_ITEMS_REQUEST });
+
+    const { data } = await axios.get(`/product/list?limit=${limit}`);
+    dispatch({ type: GET_ALL_RECOMMEND_FOOD_ITEMS_SUCCESS, payload: data.productList });
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    dispatch({ type: GET_ALL_RECOMMEND_FOOD_ITEMS_FAIL, payload: error.message });
+  }
+};
+
+export const getAllRecommendFoodsList = (limit) => async (dispatch) => {
   try {
     dispatch({ type: GET_ALL_FOOD_ITEMS_REQUEST });
 
-    const { data } = await axios.get(`/product/list?limit=${limit}`);
+    const { data } = await axios.get(`/recommend?limit=${limit}`);
+    console.log(data);
+    console.log("-------------");
+    console.log(data.productList)
     dispatch({ type: GET_ALL_FOOD_ITEMS_SUCCESS, payload: data.productList });
   } catch (error) {
     console.error("Error fetching products:", error);

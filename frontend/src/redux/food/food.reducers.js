@@ -14,10 +14,15 @@ import {
   DELETE_FOOD_ITEM_REQUEST,
   DELETE_FOOD_ITEM_FAIL,
   DELETE_FOOD_ITEM_SUCCESS,
+  GET_ALL_RECOMMEND_FOOD_ITEMS_FAIL,
+  GET_ALL_RECOMMEND_FOOD_ITEMS_SUCCESS,
+  GET_ALL_RECOMMEND_FOOD_ITEMS_REQUEST,
 } from "./food.types";
 
 const initialState = {
+  recommendedFoods: [],
   foods: [],
+
   food: null,
   loading: true,
   error: {},
@@ -31,6 +36,7 @@ export default function (state = initialState, action) {
     case ADD_FOOD_REQUEST:
     case GET_ALL_FOOD_ITEMS_REQUEST:
     case GET_SINGLE_FOOD_ITEM_REQUEST:
+    case GET_ALL_RECOMMEND_FOOD_ITEMS_REQUEST:
     case DELETE_FOOD_ITEM_REQUEST:
     case EDIT_FOOD_ITEM_REQUEST:
       return { ...state, loading: true };
@@ -38,6 +44,8 @@ export default function (state = initialState, action) {
       return { ...state, foods: [...state.foods, payload], loading: false };
     case GET_ALL_FOOD_ITEMS_SUCCESS:
       return { ...state, foods: payload, loading: false };
+    case GET_ALL_RECOMMEND_FOOD_ITEMS_SUCCESS:
+      return { ...state, recommendedFoods: payload, loading: false };
     case GET_SINGLE_FOOD_ITEM_SUCCESS:
     case EDIT_FOOD_ITEM_SUCCESS:
       return { ...state, food: payload, loading: false };
@@ -49,6 +57,7 @@ export default function (state = initialState, action) {
       };
     case ADD_FOOD_FAIL:
     case GET_ALL_FOOD_ITEMS_FAIL:
+    case GET_ALL_RECOMMEND_FOOD_ITEMS_FAIL:
     case GET_SINGLE_FOOD_ITEM_FAIL:
     case EDIT_FOOD_ITEM_FAIL:
     case DELETE_FOOD_ITEM_FAIL:

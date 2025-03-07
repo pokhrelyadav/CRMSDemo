@@ -94,7 +94,7 @@ const SignUpPage = ({ registerUser, isAuthenticated, setAlert }) => {
                 onChange={() => setFormData({ ...formData, role: "teacher" })}
                 name="role"
               />
-              <label for="teacher">Teacher</label>
+              <label for="teacher">Retailer</label>
 
               <input
                 type="radio"
@@ -103,7 +103,7 @@ const SignUpPage = ({ registerUser, isAuthenticated, setAlert }) => {
                 value="student"
                 onChange={() => setFormData({ ...formData, role: "student" })}
               />
-              <label for="student">Student</label>
+              <label for="student">Customer</label>
             </div>
 
             <br />
