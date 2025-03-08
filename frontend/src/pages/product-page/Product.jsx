@@ -39,7 +39,7 @@ const Product = ({}) => {
     const fetchRecommendedProducts = async () => {
       try {
         setLoading2(true);
-        const res = await axios.post("http://localhost:5000/recommend", {
+        const res = await axios.post("http://127.0.0.1:5000/recommend", {
           product_id: latestProductId,
         });
         setRecommendedProducts(res?.data?.recommendations);
