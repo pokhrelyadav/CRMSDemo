@@ -52,7 +52,7 @@ def get_recommendations(product_id, top_n=5):
 
     # Return recommended products
     recommended_products = [products[i] for i in similar_indices]
-    return recommended_products
+    return recommended_products[:2]
 
 # API endpoint to get recommendations
 @app.route("/recommend", methods=["POST"])
