@@ -1,77 +1,4 @@
-// import React, { useEffect, useState } from "react";
-// import { connect } from "react-redux";
-// import Loader from "../../components/loader/Loader";
-// import FoodCard from "../../components/food-card/FoodCard";
-// import { getAllFoodsList } from "../../redux/food/food.actions";
-// import axios from "axios";
-// import "./Product.css";
-
-// const Product = ({ foods, loading, getAllFoodsList }) => {
-//   const [recommendations, setRecommendations] = useState([]);
-
-//   useEffect(() => {
-//     getAllFoodsList(10); // Change the limit as needed
-//   }, [getAllFoodsList]);
-
-//   const handleAddToCart = async (productId) => {
-//     // Add product to cart logic here...
-
-//     // Fetch recommendations from Flask backend
-//     try {
-//       const response = await axios.post("http://localhost:5000/recommend", {
-//         product_id: productId,
-//       });
-//       setRecommendations(response.data.recommendations);
-//     } catch (error) {
-//       console.error("Error fetching recommendations:", error);
-//     }
-//   };
-
-//   return (
-//     <div className="product-root">
-//       <h1>All Products</h1>
-//       {loading && <Loader />}
-
-//       <div className="recommended-products">
-//         <h2>Recommended Products</h2>
-//         <div className="food-page">
-//           {recommendations.length > 0 ? (
-//             recommendations.map((recommendedProduct) => (
-//               <FoodCard
-//                 key={recommendedProduct._id}
-//                 food={recommendedProduct}
-//               />
-//             ))
-//           ) : (
-//             <p>No recommendations yet.</p>
-//           )}
-//         </div>
-//       </div>
-
-//       <div className="all-products">
-//         <h2>All Products</h2>
-//         <div className="food-page">
-//           {foods?.map((food) => (
-//             <FoodCard
-//               key={food._id}
-//               food={food}
-//               onAddToCart={() => handleAddToCart(food._id)}
-//             />
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// const mapStateToProps = (state) => ({
-//   foods: state.food.foods,
-//   loading: state.food.loading,
-// });
-
-// export default connect(mapStateToProps, { getAllFoodsList })(Product);
-
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Loader from "../../components/loader/Loader";
 import FoodCard from "../../components/food-card/FoodCard";
@@ -80,49 +7,86 @@ import {
   getAllRecommendFoodsList,
 } from "../../redux/food/food.actions";
 import "./Product.css";
+import axios from "axios";
 
-const Product = ({
-  recommendedFoods,
-  foods,
-  loading,
-  getAllFoodsList,
-  getAllRecommendFoodsList,
-}) => {
+const Product = ({}) => {
+  const [latestProductId, setLatestProductId] = useState(null);
+  const [recommendedProducts, setRecommendedProducts] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [loading2, setLoading2] = useState(false);
 
-  useEffect(() => {
-    getAllRecommendFoodsList(3); // Fetch recommended products
-  }, [getAllRecommendFoodsList]);
+  console.log({ latestProductId });
 
   useEffect(() => {
-    getAllFoodsList(10); // Fetch all products
-  }, [getAllFoodsList]);
+    const fetchAllProducts = async () => {
+      try {
+        setLoading(true);
+        const res = await axios.get("http://localhost:8000/product/list");
+        setProducts(res?.data?.productList);
+        console.log(res);
+      } catch (error) {
+        console.log("Get products api hit failed...");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  
+    fetchAllProducts();
+  }, []);
+
+  useEffect(() => {
+    const fetchRecommendedProducts = async () => {
+      try {
+        setLoading2(true);
+        const res = await axios.post("http://localhost:5000/recommend", {
+          product_id: latestProductId,
+        });
+        setRecommendedProducts(res?.data?.recommendations);
+        return res?.data?.recommendations;
+      } catch (error) {
+        console.log("Get products api hit failed...");
+      } finally {
+        setLoading2(false);
+      }
+    };
+
+    if (latestProductId) {
+      fetchRecommendedProducts();
+    }
+  }, [latestProductId]);
+  if (loading || loading2) {
+    return <Loader />;
+  }
+
   return (
     <div className="product-root">
       <h1>All Products</h1>
-      {loading && <Loader />}
-
       {/* Recommended Products */}
       <div className="recommended-products">
         <h2>All Products</h2>
         <div className="food-page">
-          {recommendedFoods?.length > 0 ? (
-            recommendedFoods.map((food) => (
-              <FoodCard key={food._id} food={food} />
+          {products?.length > 0 ? (
+            products.map((food) => (
+              <FoodCard
+                key={food._id}
+                food={food}
+                setProductId={setLatestProductId}
+              />
             ))
           ) : (
-            <p>No recommendations available.</p>
+            <p>No products available.</p>
           )}
         </div>
       </div>
 
-      {/* All Products */}
       <div className="all-products">
         <h2>Recommend Products</h2>
         <div className="food-page">
-          {foods?.length > 0 ? (
-            foods.map((food) => <FoodCard key={food._id} food={food} />)
+          {recommendedProducts?.length > 0 ? (
+            recommendedProducts.map((food) => (
+              <FoodCard key={food._id} food={food} />
+            ))
           ) : (
             <p>No products available.</p>
           )}
@@ -143,5 +107,5 @@ const mapStateToProps = (state) => ({
 // Connect both action creators
 export default connect(mapStateToProps, {
   getAllRecommendFoodsList,
-  getAllFoodsList
+  getAllFoodsList,
 })(Product);

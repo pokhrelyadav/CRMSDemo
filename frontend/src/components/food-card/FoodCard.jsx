@@ -4,14 +4,27 @@ import { deleteFoodItem } from "../../redux/food/food.actions";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import "./FoodCard.css";
+import { set } from "mongoose";
 
-const FoodCard = ({ food, AddToCart, user, deleteFoodItem }) => {
-
+const FoodCard = ({
+  id,
+  food,
+  AddToCart,
+  user,
+  deleteFoodItem,
+  setProductId,
+}) => {
   return (
     <div className="food-card" key={food?._id}>
       <img alt={food?.name} src={food?.image} />
       {!user?.isAdmin && (
-        <button className="food-card-button" onClick={() => AddToCart(food)}>
+        <button
+          className="food-card-button"
+          onClick={() => {
+            AddToCart(food);
+            setProductId(food._id);
+          }}
+        >
           Add to cart
         </button>
       )}
